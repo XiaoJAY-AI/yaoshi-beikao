@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>法规模拟卷｜中药执业药师备考站</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="mock-fagui">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand"><a href="../index.html"><span class="logo">☯</span> 中药执业药师备考站</a></div>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="../subjects/z1.html">专业知识(一)</a></li>
+          <li><a href="../subjects/z2.html">专业知识(二)</a></li>
+          <li><a href="../subjects/zh.html">综合知识</a></li>
+          <li><a href="../subjects/fl.html">法规</a></li>
+          <li class="dropdown">
+            <a href="#" class="drop-toggle">学习工具 ▾</a>
+            <ul class="drop-menu">
+              <li><a href="koujue.html">记忆口诀</a></li>
+              <li><a href="plan.html">备考计划</a></li>
+              <li><a href="info.html">报考信息</a></li>
+              <li><a href="videos.html">课件视频</a></li>
+              <li><a href="mock.html" data-group="mock">模拟试卷</a></li>
+              <li><a href="jingjiang.html">精讲讲义</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 class="page-title">📝 药事管理与法规 · 模拟试卷</h1>
+    <p class="page-sub">原创自编模拟卷（20 题，约 20 分），聚焦假药劣药界定、证书期限、特殊药品、广告与法律责任等高频命题点。处罚数额等数字可能随法规修订调整，做题后请对照最新教材核对。</p>
+
+    <div class="card">
+      <div class="quiz-toolbar">
+        <span class="quiz-score" id="quizScore">得分：--</span>
+        <button class="btn" id="quizSubmit">提交答卷</button>
+        <button class="btn btn-outline" id="quizReset" disabled>重新作答</button>
+      </div>
+      <div id="quizRoot"></div>
+      <p class="muted">答完点「提交答卷」自动判分并显示解析；X 型题少选得 0.5 分/选项，不确定时宁可不选。</p>
+    </div>
+
+    <p class="center no-print"><a class="btn btn-outline" href="mock.html">← 返回模拟试卷列表</a></p>
+  </main>
+
+  <footer class="footer">
+    <p>中药执业药师备考资料站 · 模拟卷为原创自编，仅供练习，不代表真题。</p>
+    <p>© <span data-year>2026</span> · 由站主分享给备考的朋友们</p>
+  </footer>
+
+  <script>
+    window.MOCK_DATA = [
+      {
+        type: "A",
+        q: "根据《药品管理法》，药品所含成份与国家药品标准规定的成份不符的，属于",
+        opts: ["假药", "劣药", "合格药品", "按假药论处的药品"],
+        answer: [0],
+        explain: "成份不符、以非药品冒充、变质、适应症超出规定范围，均直接定性为假药（2019 版《药品管理法》）。"
+      },
+      {
+        type: "A",
+        q: "下列情形中属于「假药」的是",
+        opts: ["超过有效期的药品", "被污染的药品", "变质的药品", "未注明产品批号的药品"],
+        answer: [2],
+        explain: "变质药品属假药；过期、被污染、未注明批号均属劣药。"
+      },
+      {
+        type: "A",
+        q: "超过有效期的药品，按《药品管理法》属于",
+        opts: ["假药", "劣药", "合格药品", "特殊药品"],
+        answer: [1],
+        explain: "超过有效期属于劣药的情形之一；变质才属假药。"
+      },
+      {
+        type: "A",
+        q: "擅自添加防腐剂、辅料的药品，属于",
+        opts: ["假药", "劣药", "处方药", "非处方药"],
+        answer: [1],
+        explain: "擅自添加防腐剂、辅料属于劣药情形。"
+      },
+      {
+        type: "A",
+        q: "《药品经营质量管理规范》的规范简称是",
+        opts: ["GMP", "GSP", "GLP", "GCP"],
+        answer: [1],
+        explain: "GMP 生产、GSP 经营、GLP 非临床研究、GCP 临床试验，首字母别搞混。"
+      },
+      {
+        type: "A",
+        q: "执业药师注册证书的有效期为",
+        opts: ["2 年", "3 年", "5 年", "长期有效"],
+        answer: [2],
+        explain: "执业药师注册有效期 5 年，期满前可申请延续注册。"
+      },
+      {
+        type: "A",
+        q: "普通处方的保存期限为",
+        opts: ["6 个月", "1 年", "2 年", "3 年"],
+        answer: [1],
+        explain: "普通处方保存 1 年；第二类精神药品处方 2 年；麻醉药品和第一类精神药品处方 3 年。"
+      },
+      {
+        type: "A",
+        q: "麻醉药品和第一类精神药品处方的保存期限为",
+        opts: ["1 年", "2 年", "3 年", "5 年"],
+        answer: [2],
+        explain: "麻醉药品和第一类精神药品处方保存 3 年，备查。"
+      },
+      {
+        type: "A",
+        q: "对使用该药品可能引起严重健康危害的药品，实施一级召回的，通知到有关药品经营企业、使用单位的时限是",
+        opts: ["24 小时内", "48 小时内", "72 小时内", "1 周内"],
+        answer: [0],
+        explain: "一级召回 24 小时、二级 48 小时、三级 72 小时。"
+      },
+      {
+        type: "A",
+        q: "中药品种保护中，二级保护品种的保护期限为",
+        opts: ["5 年", "7 年", "10 年", "20 年"],
+        answer: [1],
+        explain: "一级保护 30/20/10 年，二级保护 7 年。"
+      },
+      {
+        type: "A",
+        q: "甲类非处方药的 OTC 标识颜色为",
+        opts: ["绿色", "红色", "蓝色", "黄色"],
+        answer: [1],
+        explain: "甲类 OTC 红色标识、乙类 OTC 绿色标识，绿色更安全。"
+      },
+      {
+        type: "A",
+        q: "下列不属于国家基本药物遴选原则的是",
+        opts: ["防治必需", "安全有效", "价格合理、使用方便", "独家生产、进口优先"],
+        answer: [3],
+        explain: "基本药物遴选原则为防治必需、安全有效、价格合理、使用方便、中西药并重、基本保障、临床首选和基层能配备。"
+      },
+      {
+        type: "A",
+        q: "关于处方药广告，下列说法正确的是",
+        opts: ["可以在大众传播媒介发布", "只能在指定的医学、药学专业刊物上发布", "可以夸大宣传疗效", "可以由患者自行决定购买后发布"],
+        answer: [1],
+        explain: "处方药只能在国家指定的医学、药学专业刊物上作广告，不得在大众传播媒介发布或以其他方式进行以公众为对象的广告宣传。"
+      },
+      {
+        type: "A",
+        q: "药品批准文号「国药准字 H + 8 位数字」中，H 代表",
+        opts: ["中药", "化学药品", "生物制品", "保健药品"],
+        answer: [1],
+        explain: "H 化学药、Z 中药、S 生物制品、B 保健药品等。"
+      },
+      {
+        type: "A",
+        q: "药品储存要求中，「阴凉处」是指",
+        opts: ["不超过 10℃", "不超过 20℃", "2~10℃", "10~30℃"],
+        answer: [1],
+        explain: "阴凉处不高于 20℃；冷处 2~10℃；常温 10~30℃；凉暗处避光且不高于 20℃。"
+      },
+      {
+        type: "A",
+        q: "零售药店销售含麻黄碱类复方制剂（非处方药部分），一次销售不得超过",
+        opts: ["1 个最小包装", "2 个最小包装", "5 个最小包装", "10 个最小包装"],
+        answer: [1],
+        explain: "含麻黄碱类复方制剂一次销售不得超过 2 个最小包装；单位剂量麻黄碱类含量大于 30mg 的列入处方药管理。"
+      },
+      {
+        type: "A",
+        q: "根据《医疗用毒性药品管理办法》，调配毒性药品的处方保存备查期限为",
+        opts: ["1 年", "2 年", "3 年", "5 年"],
+        answer: [1],
+        explain: "毒性药品处方一次有效，取药后处方保存二年备查。"
+      },
+      {
+        type: "X",
+        q: "根据《药品管理法》，下列情形中属于「劣药」的是",
+        opts: ["未标明或者更改有效期的药品", "超过有效期的药品", "未注明或者更改产品批号的药品", "被污染的药品"],
+        answer: [0, 1, 2, 3],
+        explain: "劣药包括：含量不符合标准、被污染、未标明或更改有效期、未注明或更改批号、超过有效期、擅自添加防腐剂辅料、其他不符合标准的情形。"
+      },
+      {
+        type: "C",
+        q: "【情景】某零售药店未查验处方，向顾客销售处方药，随后顾客发现所购药品已超过有效期。该药店的行为涉及",
+        opts: ["仅违反凭处方销售处方药的规定", "仅构成销售劣药", "既违反凭处方销售处方药的规定，又构成销售劣药", "均不违法"],
+        answer: [2],
+        explain: "处方药必须凭处方销售；销售超过有效期药品属于销售劣药，两种违法行为并存。"
+      },
+      {
+        type: "C",
+        q: "【接上题】依据《药品管理法》，关于销售劣药应承担法律责任的说法，正确的是",
+        opts: ["没收违法销售的药品和违法所得，并处罚款；情节严重的吊销许可证", "仅责令改正，不作处罚", "仅没收药品，不处罚款", "与药店无关，只需退货"],
+        answer: [0],
+        explain: "生产、销售劣药：没收违法生产、销售的药品和违法所得，并处货值金额十倍以上二十倍以下罚款；情节严重的，责令停产停业整顿直至吊销许可证件。"
+      }
+    ];
+  </script>
+  <script src="../js/main.js"></script>
+  <script src="../js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中药综合模拟卷｜中药执业药师备考站</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="mock-zonghe">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand"><a href="../index.html"><span class="logo">☯</span> 中药执业药师备考站</a></div>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="../subjects/z1.html">专业知识(一)</a></li>
+          <li><a href="../subjects/z2.html">专业知识(二)</a></li>
+          <li><a href="../subjects/zh.html">综合知识</a></li>
+          <li><a href="../subjects/fl.html">法规</a></li>
+          <li class="dropdown">
+            <a href="#" class="drop-toggle">学习工具 ▾</a>
+            <ul class="drop-menu">
+              <li><a href="koujue.html">记忆口诀</a></li>
+              <li><a href="plan.html">备考计划</a></li>
+              <li><a href="info.html">报考信息</a></li>
+              <li><a href="videos.html">课件视频</a></li>
+              <li><a href="mock.html" data-group="mock">模拟试卷</a></li>
+              <li><a href="jingjiang.html">精讲讲义</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 class="page-title">📝 中药学综合知识与技能 · 模拟试卷</h1>
+    <p class="page-sub">原创自编模拟卷（20 题，约 24 分），覆盖中医基础、辨证论治、调剂操作、合理用药。正式考试为 120 题 120 分钟，这里重在练思路：先辨证，再选方药。</p>
+
+    <div class="card">
+      <div class="quiz-toolbar">
+        <span class="quiz-score" id="quizScore">得分：--</span>
+        <button class="btn" id="quizSubmit">提交答卷</button>
+        <button class="btn btn-outline" id="quizReset" disabled>重新作答</button>
+      </div>
+      <div id="quizRoot"></div>
+      <p class="muted">答完点「提交答卷」自动判分并显示解析；X 型题少选得 0.5 分/选项，不确定时宁可不选。</p>
+    </div>
+
+    <p class="center no-print"><a class="btn btn-outline" href="mock.html">← 返回模拟试卷列表</a></p>
+  </main>
+
+  <footer class="footer">
+    <p>中药执业药师备考资料站 · 模拟卷为原创自编，仅供练习，不代表真题。</p>
+    <p>© <span data-year>2026</span> · 由站主分享给备考的朋友们</p>
+  </footer>
+
+  <script>
+    window.MOCK_DATA = [
+      {
+        type: "A",
+        q: "中医学理论体系的基本特点是",
+        opts: ["整体观念和辨证论治", "阴阳学说和五行学说", "脏腑经络和气血津液", "望闻问切和辨证施治"],
+        answer: [0],
+        explain: "中医学以整体观念为指导思想，以辨证论治为诊疗特点。"
+      },
+      {
+        type: "A",
+        q: "五行中具有「曲直」特性的是",
+        opts: ["木", "火", "土", "金"],
+        answer: [0],
+        explain: "木曰曲直、火曰炎上、土爰稼穑、金曰从革、水曰润下。"
+      },
+      {
+        type: "A",
+        q: "具有统摄血液、防止逸出脉外功能的是",
+        opts: ["心", "肝", "脾", "肾"],
+        answer: [2],
+        explain: "脾主运化、主统血；心主血脉；肝主藏血；肾主藏精。"
+      },
+      {
+        type: "A",
+        q: "具有主纳气功能的脏是",
+        opts: ["肺", "脾", "肝", "肾"],
+        answer: [3],
+        explain: "肾主纳气，即摄纳肺吸入之清气，保证呼吸的深度。"
+      },
+      {
+        type: "A",
+        q: "六淫中「善行而数变」、致病部位游走不定的是",
+        opts: ["风邪", "寒邪", "湿邪", "燥邪"],
+        answer: [0],
+        explain: "风性善行而数变，为百病之长，常与寒、热、湿等合邪致病。"
+      },
+      {
+        type: "A",
+        q: "舌苔黄腻，多主",
+        opts: ["寒湿内盛", "湿热内蕴", "阴虚内热", "瘀血内阻"],
+        answer: [1],
+        explain: "黄苔主热证，腻苔主湿浊、痰饮、食积，黄腻为湿热内蕴。"
+      },
+      {
+        type: "A",
+        q: "弦脉的主病多见于",
+        opts: ["表证", "肝胆病、痛证、痰饮", "气血两虚", "失血证"],
+        answer: [1],
+        explain: "弦脉端直而长、如按琴弦，主肝胆病、诸痛、痰饮，亦可见于老年人。"
+      },
+      {
+        type: "A",
+        q: "患者恶寒重、发热轻、无汗、头身疼痛、鼻塞流清涕、咳嗽痰白，舌苔薄白，脉浮紧。辨证为风寒感冒，治宜辛温解表，宜选",
+        opts: ["银翘散", "桑菊饮", "荆防败毒散", "参苏饮"],
+        answer: [2],
+        explain: "风寒感冒选辛温解表之荆防败毒散加减；银翘散、桑菊饮用于风热感冒。"
+      },
+      {
+        type: "A",
+        q: "胃痛暴作，恶寒喜暖，得温痛减，遇寒加重，口淡不渴，舌淡苔薄白，脉弦紧。治法宜为",
+        opts: ["疏肝理气，和胃止痛", "温胃散寒，行气止痛", "清热化湿，理气和中", "消食导滞，和胃止痛"],
+        answer: [1],
+        explain: "寒邪客胃证，治宜温胃散寒、行气止痛，代表方为良附丸。"
+      },
+      {
+        type: "A",
+        q: "不寐多梦，急躁易怒，头晕头胀，目赤耳鸣，口干而苦，舌红苔黄，脉弦数。宜选用",
+        opts: ["归脾汤", "龙胆泻肝汤", "天王补心丹", "温胆汤"],
+        answer: [1],
+        explain: "肝郁化火证，治宜疏肝泻火、镇心安神，方选龙胆泻肝汤加减。"
+      },
+      {
+        type: "A",
+        q: "消渴病见尿频量多，浑浊如脂膏，口干唇燥，舌红少苔，脉细数。辨证为肾阴亏虚（下消），宜选用",
+        opts: ["消渴方", "玉女煎", "六味地黄丸", "金匮肾气丸"],
+        answer: [2],
+        explain: "下消肾阴亏虚证治宜滋阴固肾，方选六味地黄丸加减；阴阳两虚方选金匮肾气丸。"
+      },
+      {
+        type: "A",
+        q: "下列药物中，入汤剂应「先煎」的是",
+        opts: ["磁石", "薄荷", "车前子", "阿胶"],
+        answer: [0],
+        explain: "矿物、贝壳类及有毒药物需先煎久煎，如磁石、石决明、附子；薄荷后下，车前子包煎，阿胶烊化。"
+      },
+      {
+        type: "A",
+        q: "下列药物中，宜「烊化」冲服的是",
+        opts: ["砂仁", "阿胶", "蒲黄", "人参"],
+        answer: [1],
+        explain: "阿胶、鹿角胶等胶类药物宜烊化兑服；砂仁后下，蒲黄包煎，人参另煎。"
+      },
+      {
+        type: "A",
+        q: "中药饮片养护中，采用「对抗同贮法」的常用配伍是",
+        opts: ["人参与细辛", "牡丹皮与泽泻", "甘草与甘遂", "半夏与附子"],
+        answer: [1],
+        explain: "对抗同贮：牡丹皮与泽泻、人参与细辛等同贮防虫防霉；甘草反甘遂、半夏反附子属配伍禁忌。"
+      },
+      {
+        type: "A",
+        q: "调剂人员审核处方时发现处方中有「十八反」配伍，正确的处理是",
+        opts: ["照方调配", "与患者商量后调配", "不予调配，并按规定报告/联系处方医师", "自行调整药味"],
+        answer: [2],
+        explain: "处方审核发现配伍禁忌、超剂量等用药不适宜情形，应拒绝调配，必要时联系医师确认或更正。"
+      },
+      {
+        type: "X",
+        q: "下列中药入汤剂需要「包煎」的是",
+        opts: ["车前子", "蒲黄", "旋覆花", "海金沙"],
+        answer: [0, 1, 2, 3],
+        explain: "易使药液浑浊、刺激咽喉或漂浮的药材需包煎：车前子、葶苈子、蒲黄、旋覆花、海金沙、辛夷等。"
+      },
+      {
+        type: "X",
+        q: "下列药物中，妊娠期「禁用」（而非仅慎用）的是",
+        opts: ["巴豆", "水蛭", "麝香", "三棱"],
+        answer: [0, 1, 2, 3],
+        explain: "峻下逐水（巴豆）、破血通经（水蛭、三棱、莪术）、芳香走窜（麝香）及有毒药均属妊娠禁用。"
+      },
+      {
+        type: "X",
+        q: "关于中西药联用，下列说法正确的是",
+        opts: [
+          "含麻黄碱的中成药与强心苷类药物合用，可能增加心脏毒性",
+          "含鞣质较多的中药与铁剂、钙剂同服，会影响西药吸收",
+          "含朱砂的中成药不宜与溴化物、碘化物制剂合用",
+          "含有机酸的中药与磺胺类药物同服，可能增加肾损害风险"
+        ],
+        answer: [0, 1, 2, 3],
+        explain: "以上均属教材列举的常见不合理联用：麻黄碱兴奋心脏，鞣质与金属离子结合，朱砂与卤化物生成有毒化合物，有机酸酸化尿液使磺胺析出结晶。"
+      },
+      {
+        type: "C",
+        q: "【病例】患者，男，60 岁。反复胸痛胸闷 3 年，近日因情志不遂加重，症见胸痛如刺、固定不移、入夜尤甚，舌紫暗有瘀斑，脉涩。其辨证应为",
+        opts: ["气滞心胸证", "心血瘀阻证", "痰浊闭阻证", "气阴两虚证"],
+        answer: [1],
+        explain: "胸痛如刺、固定不移、舌紫暗有瘀斑、脉涩为心血瘀阻证，治宜活血化瘀、通脉止痛。"
+      },
+      {
+        type: "C",
+        q: "【接上题】执业药师对该患者的健康指导中，不恰当的是",
+        opts: ["避免情志刺激，保持心情舒畅", "低盐低脂饮食，戒烟限酒", "胸痛发作时及时就医或遵医嘱用药", "加强剧烈运动以增强心肺功能"],
+        answer: [3],
+        explain: "冠心病患者应避免剧烈运动和过度劳累，以免诱发心绞痛；宜在医师指导下进行适度运动。"
+      }
+    ];
+  </script>
+  <script src="../js/main.js"></script>
+  <script src="../js/quiz.js"></script>
+</body>
+</html>
