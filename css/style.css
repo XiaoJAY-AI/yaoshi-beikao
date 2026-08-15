@@ -392,6 +392,8 @@ ul.tight li { margin: 4px 0; }
   border: 1px solid #ecd9a8;
 }
 .quiz-q .q-text { margin: 4px 0 10px; font-weight: 600; }
+.quiz-q .q-pairs { margin: 8px 0 4px; padding-left: 22px; font-weight: 400; font-size: 14px; }
+.quiz-q .q-pairs li { margin: 2px 0; }
 .quiz-q .opts { list-style: none; padding: 0; margin: 0; }
 .quiz-q .opts li {
   padding: 8px 12px;

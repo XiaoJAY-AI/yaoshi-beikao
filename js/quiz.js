@@ -3,15 +3,42 @@
 
 (function () {
   var TYPE_LABEL = { A: "A 单选", B: "B 配伍", C: "C 综合分析", X: "X 多选" };
+  var flat = []; // 扁平化后的题目（B 型按题配展开）
 
   function letter(i) {
     return String.fromCharCode(65 + i);
   }
 
+  // 将 MOCK_DATA 展平：B 型题每个"题干-题配"成为一道小题，共用选项与答案
+  function flatten(data) {
+    var out = [];
+    data.forEach(function (q) {
+      if (q.type === "B" && q.pairs && q.pairs.length) {
+        q.pairs.forEach(function (pair, pi) {
+          out.push({
+            type: "B",
+            stem: q.stem,
+            pair: pair,
+            pairLabel: "(" + letter(pi) + ")",
+            opts: q.opts,
+            answer: [q.answer[pi]],
+            explain: q.explain,
+            total: q.pairs.length,
+            idx: pi,
+          });
+        });
+      } else {
+        out.push(q);
+      }
+    });
+    return out;
+  }
+
   function render(root) {
     var data = window.MOCK_DATA || [];
+    flat = flatten(data);
     root.innerHTML = "";
-    data.forEach(function (q, i) {
+    flat.forEach(function (q, i) {
       var card = document.createElement("div");
       card.className = "quiz-q";
       card.dataset.answer = JSON.stringify(q.answer);
@@ -29,7 +56,11 @@
 
       var text = document.createElement("div");
       text.className = "q-text";
-      text.textContent = q.q;
+      if (q.type === "B") {
+        text.textContent = q.stem + "　" + q.pairLabel + " " + q.pair;
+      } else {
+        text.textContent = q.q || q.stem || "";
+      }
 
       var opts = document.createElement("ul");
       opts.className = "opts";
@@ -65,7 +96,7 @@
     var total = 0;
     var right = 0;
     root.querySelectorAll(".quiz-q").forEach(function (card) {
-      var data = window.MOCK_DATA[parseInt(card.querySelector(".q-no").textContent, 10) - 1];
+      var data = flat[parseInt(card.querySelector(".q-no").textContent, 10) - 1];
       var picked = [];
       card.querySelectorAll(".opts li.selected").forEach(function (li) {
         picked.push(parseInt(li.dataset.idx, 10));
@@ -74,8 +105,8 @@
 
       var correct = JSON.parse(card.dataset.answer);
       var isRight = picked.length === correct.length && correct.every(function (c) { return picked.indexOf(c) !== -1; });
-      total += (data.type === "X") ? 2 : 1;
-      if (isRight) right += (data.type === "X") ? 2 : 1;
+      total += 1;
+      if (isRight) right += 1;
 
       correct.forEach(function (c) {
         card.querySelectorAll(".opts li")[c].classList.add("correct");
@@ -102,6 +133,7 @@
     var reset = document.getElementById("quizReset");
 
     render(root);
+    if (!flat.length) return;
 
     submit.addEventListener("click", function () {
       var unselected = 0;
