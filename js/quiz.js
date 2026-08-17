@@ -4,9 +4,66 @@
 (function () {
   var TYPE_LABEL = { A: "A 单选", B: "B 配伍", C: "C 综合分析", X: "X 多选" };
   var flat = []; // 扁平化后的题目（B 型按题配展开）
+  var page = 0;
+  var pager = null;
+  var pagerInfo = null;
 
   function letter(i) {
     return String.fromCharCode(65 + i);
+  }
+
+  function countAnswered() {
+    var n = 0;
+    document.querySelectorAll(".quiz-q").forEach(function (card) {
+      if (card.querySelector(".opts li.selected")) n++;
+    });
+    return n;
+  }
+
+  function updatePager() {
+    if (!pagerInfo) return;
+    pagerInfo.textContent = "第 " + (page + 1) + " / " + flat.length + " 题 · 已答 " + countAnswered() + " 题";
+    var prevBtn = pager.querySelector(".q-prev");
+    var nextBtn = pager.querySelector(".q-next");
+    if (prevBtn) prevBtn.disabled = page === 0;
+    if (nextBtn) nextBtn.disabled = page >= flat.length - 1;
+  }
+
+  function showPage(i, root) {
+    page = Math.max(0, Math.min(flat.length - 1, i));
+    root.querySelectorAll(".quiz-q").forEach(function (card, idx) {
+      card.style.display = idx === page ? "" : "none";
+      card.dataset.current = idx === page ? "1" : "0";
+    });
+    if (pager) {
+      pager.style.display = "flex";
+      pagerInfo.textContent = "第 " + (page + 1) + " / " + flat.length + " 题 · 已答 " + countAnswered() + " 题";
+      var prevBtn = pager.querySelector(".q-prev");
+      var nextBtn = pager.querySelector(".q-next");
+      if (prevBtn) prevBtn.disabled = page === 0;
+      if (nextBtn) nextBtn.disabled = page >= flat.length - 1;
+    }
+  }
+
+  function buildPager(root) {
+    pager = document.createElement("div");
+    pager.className = "q-pager";
+    var prevBtn = document.createElement("button");
+    prevBtn.className = "btn btn-outline q-prev";
+    prevBtn.type = "button";
+    prevBtn.textContent = "← 上一题";
+    pagerInfo = document.createElement("span");
+    pagerInfo.className = "q-pager-info";
+    var nextBtn = document.createElement("button");
+    nextBtn.className = "btn q-next";
+    nextBtn.type = "button";
+    nextBtn.textContent = "下一题 →";
+    prevBtn.addEventListener("click", function () { showPage(page - 1, root); });
+    nextBtn.addEventListener("click", function () { showPage(page + 1, root); });
+    pager.appendChild(prevBtn);
+    pager.appendChild(pagerInfo);
+    pager.appendChild(nextBtn);
+    root.parentNode.insertBefore(pager, root.nextSibling);
   }
 
   // 将 MOCK_DATA 展平：B 型题每个"题干-题配"成为一道小题，共用选项与答案
@@ -134,6 +191,8 @@
 
     render(root);
     if (!flat.length) return;
+    buildPager(root);
+    showPage(0, root);
 
     submit.addEventListener("click", function () {
       var unselected = 0;
@@ -141,12 +200,18 @@
         if (!card.querySelector(".opts li.selected")) unselected++;
       });
       if (unselected > 0) {
-        if (!confirm("还有 " + unselected + " 题未作答，确定交卷？")) return;
+        if (!confirm("还有 " + unselected + " 题未作答，确定交卷？（可用上一题/下一题检查未答题目）")) return;
       }
       var r = score(root);
       scoreBox.textContent = "得分：" + r.right + " / " + r.total + " 分";
       submit.disabled = true;
       reset.disabled = false;
+      if (pager) {
+        var prevBtn = pager.querySelector(".q-prev");
+        var nextBtn = pager.querySelector(".q-next");
+        if (prevBtn) prevBtn.disabled = true;
+        if (nextBtn) nextBtn.disabled = true;
+      }
       scoreBox.scrollIntoView({ behavior: "smooth", block: "center" });
     });
 
@@ -162,6 +227,13 @@
       scoreBox.textContent = "得分：--";
       submit.disabled = false;
       reset.disabled = true;
+      if (pager) {
+        var prevBtn = pager.querySelector(".q-prev");
+        var nextBtn = pager.querySelector(".q-next");
+        if (prevBtn) prevBtn.disabled = false;
+        if (nextBtn) nextBtn.disabled = false;
+      }
+      showPage(0, root);
     });
   });
 })();

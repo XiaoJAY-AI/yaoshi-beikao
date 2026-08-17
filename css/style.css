@@ -421,6 +421,9 @@ ul.tight li { margin: 4px 0; }
 }
 .quiz-q .explain.show { display: block; }
 .quiz-q .mark { margin-left: 6px; font-weight: 700; }
+.quiz-q[data-current="1"] { border-color: #8fb0e8; box-shadow: 0 0 0 2px rgba(143, 176, 232, 0.25); }
+.q-pager { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 4px 0 18px; flex-wrap: wrap; }
+.q-pager-info { font-size: 13px; color: #666; }
 .mark-right { color: #2f6b4f; }
 .mark-wrong { color: #c0392b; }
 
