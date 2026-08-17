@@ -7,6 +7,7 @@
   var page = 0;
   var pager = null;
   var pagerInfo = null;
+  var answerCells = [];
 
   function letter(i) {
     return String.fromCharCode(65 + i);
@@ -29,6 +30,55 @@
     if (nextBtn) nextBtn.disabled = page >= flat.length - 1;
   }
 
+  function updateAnswerCard(root) {
+    var cards = root.querySelectorAll(".quiz-q");
+    answerCells.forEach(function (b, i) {
+      var card = cards[i];
+      if (!card) return;
+      var cls = "ac-btn";
+      if (card.querySelector(".opts li.selected")) cls += " ac-answered";
+      if (card.classList.contains("ac-marked-right")) cls += " ac-right";
+      if (card.classList.contains("ac-marked-wrong")) cls += " ac-wrong";
+      if (i === page) cls += " ac-current";
+      b.className = cls;
+    });
+  }
+
+  function buildAnswerCard(root) {
+    var wrap = document.createElement("div");
+    wrap.className = "answer-card";
+    var title = document.createElement("div");
+    title.className = "answer-card-title";
+    var t = document.createElement("span");
+    t.textContent = "答题卡 · 点击题号快速跳转";
+    var legend = document.createElement("span");
+    legend.className = "ac-legend";
+    legend.innerHTML =
+      '<span><i class="ac-dot answered"></i>已答</span>' +
+      '<span><i class="ac-dot wrong"></i>答错</span>' +
+      '<span><i class="ac-dot current"></i>当前</span>';
+    title.appendChild(t);
+    title.appendChild(legend);
+    var grid = document.createElement("div");
+    grid.className = "answer-grid";
+    flat.forEach(function (q, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "ac-btn";
+      b.textContent = i + 1;
+      b.dataset.idx = i;
+      b.addEventListener("click", function () {
+        showPage(i, root);
+        updateAnswerCard(root);
+      });
+      grid.appendChild(b);
+      answerCells.push(b);
+    });
+    wrap.appendChild(title);
+    wrap.appendChild(grid);
+    root.parentNode.insertBefore(wrap, root);
+  }
+
   function showPage(i, root) {
     page = Math.max(0, Math.min(flat.length - 1, i));
     root.querySelectorAll(".quiz-q").forEach(function (card, idx) {
@@ -43,6 +93,7 @@
       if (prevBtn) prevBtn.disabled = page === 0;
       if (nextBtn) nextBtn.disabled = page >= flat.length - 1;
     }
+    updateAnswerCard(root);
   }
 
   function buildPager(root) {
@@ -133,6 +184,7 @@
             opts.querySelectorAll("li").forEach(function (el) { el.classList.remove("selected"); });
             li.classList.add("selected");
           }
+          updateAnswerCard(root);
         });
         opts.appendChild(li);
       });
@@ -178,6 +230,7 @@
       mark.className = "mark " + (isRight ? "mark-right" : "mark-wrong");
       mark.textContent = isRight ? "✓ 正确" : "✗ 错误";
       card.querySelector(".q-text").appendChild(mark);
+      card.classList.add(isRight ? "ac-marked-right" : "ac-marked-wrong");
     });
     return { right: right, total: total };
   }
@@ -192,6 +245,7 @@
     render(root);
     if (!flat.length) return;
     buildPager(root);
+    buildAnswerCard(root);
     showPage(0, root);
 
     submit.addEventListener("click", function () {
@@ -206,6 +260,7 @@
       scoreBox.textContent = "得分：" + r.right + " / " + r.total + " 分";
       submit.disabled = true;
       reset.disabled = false;
+      updateAnswerCard(root);
       if (pager) {
         var prevBtn = pager.querySelector(".q-prev");
         var nextBtn = pager.querySelector(".q-next");
@@ -223,6 +278,7 @@
         card.querySelector(".explain").classList.remove("show");
         var mark = card.querySelector(".q-text .mark");
         if (mark) mark.remove();
+        card.classList.remove("ac-marked-right", "ac-marked-wrong");
       });
       scoreBox.textContent = "得分：--";
       submit.disabled = false;

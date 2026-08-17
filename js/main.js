@@ -21,9 +21,23 @@ document.addEventListener("DOMContentLoaded", function () {
     if (toggle) {
       toggle.addEventListener("click", function (e) {
         e.preventDefault();
+        e.stopPropagation();
         dd.classList.toggle("open");
       });
     }
+    // 点击菜单项后收起下拉（触屏设备上避免菜单滞留）
+    dd.querySelectorAll("a").forEach(function (a) {
+      if (a === toggle) return;
+      a.addEventListener("click", function () {
+        dd.classList.remove("open");
+      });
+    });
+  });
+  // 点击页面其他区域时收起所有下拉
+  document.addEventListener("click", function (e) {
+    document.querySelectorAll(".site-nav .dropdown.open").forEach(function (dd) {
+      if (!dd.contains(e.target)) dd.classList.remove("open");
+    });
   });
   // 分组页面（如 mock-zonghe → mock）自动高亮父入口并展开下拉
   document.querySelectorAll(".site-nav a[data-group]").forEach(function (a) {

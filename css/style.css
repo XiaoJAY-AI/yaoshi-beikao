@@ -96,8 +96,10 @@ a:hover { text-decoration: underline; }
   padding: 4px 0;
   z-index: 60;
 }
-.site-nav .dropdown:hover .drop-menu,
 .site-nav .dropdown.open .drop-menu { display: block; }
+@media (hover: hover) {
+  .site-nav .dropdown:hover .drop-menu { display: block; }
+}
 .site-nav .drop-menu a {
   color: var(--ink);
   padding: 8px 16px;
@@ -424,6 +426,19 @@ ul.tight li { margin: 4px 0; }
 .quiz-q[data-current="1"] { border-color: #8fb0e8; box-shadow: 0 0 0 2px rgba(143, 176, 232, 0.25); }
 .q-pager { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 4px 0 18px; flex-wrap: wrap; }
 .q-pager-info { font-size: 13px; color: #666; }
+.answer-card { margin: 0 0 18px; background: #fbfaf6; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.answer-card-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 600; margin-bottom: 10px; flex-wrap: wrap; }
+.answer-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
+.ac-btn { border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 7px 0; font-size: 12px; color: #555; cursor: pointer; min-width: 0; }
+.ac-btn.ac-answered { background: #dcefdc; border-color: #2f6b4f; color: #1f4a35; }
+.ac-btn.ac-right { background: #2f6b4f; border-color: #2f6b4f; color: #fff; }
+.ac-btn.ac-wrong { background: #e04b3f; border-color: #e04b3f; color: #fff; }
+.ac-btn.ac-current { outline: 2px solid #8fb0e8; outline-offset: 1px; }
+.ac-legend { font-weight: 400; font-size: 12px; color: #666; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ac-dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 3px; vertical-align: -1px; }
+.ac-dot.answered { background: #2f6b4f; }
+.ac-dot.wrong { background: #e04b3f; }
+.ac-dot.current { background: #8fb0e8; }
 .mark-right { color: #2f6b4f; }
 .mark-wrong { color: #c0392b; }
 
@@ -432,6 +447,8 @@ ul.tight li { margin: 4px 0; }
   .hero { padding: 28px 20px; }
   .site-nav a { padding: 10px 8px; font-size: 13px; }
   .card { padding: 16px; }
+  .answer-grid { gap: 3px; }
+  .ac-btn { padding: 6px 0; font-size: 11px; }
 }
 
 @media print {
